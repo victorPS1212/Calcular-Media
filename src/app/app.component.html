@@ -1,0 +1,49 @@
+<h2>Calculadora de Média</h2>
+
+<div class="card shadow">
+    <div class="col-auto pt-3">
+      <label class="sr-only" for="inlineFormInputGroup">RMA</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+        </div>
+        <input
+          type="number"
+          class="form-control"
+          id="inlineFormInputGroup"
+          placeholder="Insira o RMA"
+        />
+      </div>
+    </div>
+    <div class="col-auto pt-3">
+      <label class="sr-only" for="inlineFormInputGroup">Nome:</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          id="inlineFormInputGroup"
+          placeholder="Insira o Nome do Aluno"
+        />
+
+        <div *ngFor="let aluno of alunos; let i = index">
+          <h4>Aluno {{i+1}}</h4>
+          <label>Nota 1:</label>
+          <input [(ngModel)]="aluno.nota1" type="number" min="0" max="10" required>
+          <br>
+          <label>Nota 2:</label>
+          <input [(ngModel)]="aluno.nota2" type="number" min="0" max="10" required>
+          <br>
+          <label>Nota 3:</label>
+          <input [(ngModel)]="aluno.nota3" type="number" min="0" max="10" required>
+          <br>
+          <label>Nota 4:</label>
+          <input [(ngModel)]="aluno.nota4" type="number" min="0" max="10" required>
+          <br>
+          <p *ngIf="aluno.reprovado">Aluno Reprovado</p>
+          <hr>
+        </div>
+      
+        <button (click)="calcularMedia()">Calcular Média</button>
+        <h3 *ngIf="media !== null">Média dos Alunos: {{ media.toFixed(2) }}</h3>
+        
